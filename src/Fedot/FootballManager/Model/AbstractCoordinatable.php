@@ -7,7 +7,7 @@ namespace Fedot\FootballManager\Model;
 use Fedot\FootballManager\Interfaces\Coordinatable;
 use Fedot\FootballManager\ValueObject\Coordinates;
 
-class AbstractCoordinatable implements Coordinatable
+abstract class AbstractCoordinatable implements Coordinatable
 {
     /**
      * @var Coordinates

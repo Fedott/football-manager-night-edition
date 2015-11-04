@@ -64,6 +64,8 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
 
         $action = $player->decide();
         $this->assertInstanceOf(Move::class, $action);
+        $this->assertNotNull($action->getSpeed());
+        $this->assertNotNull($action->getAngle());
     }
 
     public function testDecideShoot()
@@ -86,6 +88,7 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
 
         $action = $player->decide();
         $this->assertInstanceOf(Shoot::class, $action);
+        $this->assertNotNull($action->getPower());
+        $this->assertNotNull($action->getAngle());
     }
-
 }

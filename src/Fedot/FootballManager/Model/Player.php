@@ -161,8 +161,12 @@ class Player extends AbstractCoordinatable
 
         if ($distance < 15) {
             $action = new Shoot();
+            $action->setAngle(rand(0, 100));
+            $action->setPower(rand(0, 100));
         } else {
             $action = new Move();
+            $action->setAngle(rand(0, 100));
+            $action->setSpeed(rand(0, 100));
         }
         return $action;
     }

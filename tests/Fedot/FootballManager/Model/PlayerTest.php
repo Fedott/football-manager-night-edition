@@ -5,6 +5,9 @@ namespace Fedot\FootballManager\Model;
 
 
 use Fedot\FootballManager\Interfaces\Coordinatable;
+use Fedot\FootballManager\Model\Action\Move;
+use Fedot\FootballManager\Model\Action\Shoot;
+use Fedot\FootballManager\ValueObject\Coordinates;
 
 class PlayerTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,6 +32,10 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(75, $player->getSpeed());
         $this->assertEquals(90, $player->getShotAccurency());
         $this->assertEquals(98, $player->getShotPower());
+
+        $world = new World();
+        $player->setWorld($world);
+        $this->assertEquals($world, $player->getWorld());
     }
 
     public function testImplementCoordinatable()
@@ -37,10 +44,48 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Coordinatable::class, $player);
     }
 
-    public function testDecide()
+    public function testDecideMove()
     {
-//        $player = new Player();
-//        $decision = $player->decide();
-//        $this->assertEquals('move', $decision);
+        $world = new World();
+        $field = new Field();
+        $field->setCoordinate(new Coordinates(0, 0));
+        $world->setField($field);
+
+        $ball = new Ball();
+        $ball->setCoordinate(new Coordinates(100, 100));
+        $world->setBall($ball);
+
+        $player = new Player();
+        $player->setCoordinate(new Coordinates(10, 100));
+        $player->setWorld($world);
+        $players = [$player];
+
+        $world->setPlayers($players);
+
+        $action = $player->decide();
+        $this->assertInstanceOf(Move::class, $action);
     }
+
+    public function testDecideShoot()
+    {
+        $world = new World();
+        $field = new Field();
+        $field->setCoordinate(new Coordinates(0, 0));
+        $world->setField($field);
+
+        $ball = new Ball();
+        $ball->setCoordinate(new Coordinates(100, 100));
+        $world->setBall($ball);
+
+        $player = new Player();
+        $player->setCoordinate(new Coordinates(90, 100));
+        $player->setWorld($world);
+        $players = [$player];
+
+        $world->setPlayers($players);
+
+        $action = $player->decide();
+        $this->assertInstanceOf(Shoot::class, $action);
+    }
+
 }

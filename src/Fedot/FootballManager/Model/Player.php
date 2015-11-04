@@ -4,12 +4,19 @@
 namespace Fedot\FootballManager\Model;
 
 
+use Fedot\FootballManager\Model\Action\Move;
+use Fedot\FootballManager\Model\Action\Shoot;
 use Fedot\FootballManager\ValueObject\Coordinates;
 
 
 
 class Player extends AbstractCoordinatable
 {
+    /**
+     * @var World
+     */
+    protected $world;
+
     /**
      * @var string
      */
@@ -123,5 +130,40 @@ class Player extends AbstractCoordinatable
     {
         $this->shotPower = $shotPower;
         return $this;
+    }
+
+    /**
+     * @return World
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+
+    /**
+     * @param World $world
+     * @return Player
+     */
+    public function setWorld(World $world)
+    {
+        $this->world = $world;
+        return $this;
+    }
+
+    public function decide()
+    {
+        $ballCoordinates = $this->world->getBall()->getCoordinate();
+
+        $dx = $ballCoordinates->getX() - $this->getCoordinate()->getX();
+        $dy = $ballCoordinates->getY() - $this->getCoordinate()->getY();
+
+        $distance = pow((pow($dx, 2) + pow($dy, 2)), 0.5);
+
+        if ($distance < 15) {
+            $action = new Shoot();
+        } else {
+            $action = new Move();
+        }
+        return $action;
     }
 }

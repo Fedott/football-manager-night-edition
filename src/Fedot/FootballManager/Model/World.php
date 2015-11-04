@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fedot\FootballManager\Service;
+namespace Fedot\FootballManager\Model;
 
 
 use Fedot\FootballManager\Model\Ball;
@@ -9,7 +9,7 @@ use Fedot\FootballManager\Model\Field;
 use Fedot\FootballManager\Model\Player;
 use Fedot\FootballManager\ValueObject\Coordinates;
 
-class GameService
+class World
 {
     /**
      * @var Player[]
@@ -59,5 +59,35 @@ class GameService
     public function getField()
     {
         return $this->field;
+    }
+
+    /**
+     * @param Player[] $players
+     * @return World
+     */
+    public function setPlayers($players)
+    {
+        $this->players = $players;
+        return $this;
+    }
+
+    /**
+     * @param \Fedot\FootballManager\Model\Ball $ball
+     * @return World
+     */
+    public function setBall($ball)
+    {
+        $this->ball = $ball;
+        return $this;
+    }
+
+    /**
+     * @param \Fedot\FootballManager\Model\Field $field
+     * @return World
+     */
+    public function setField($field)
+    {
+        $this->field = $field;
+        return $this;
     }
 }

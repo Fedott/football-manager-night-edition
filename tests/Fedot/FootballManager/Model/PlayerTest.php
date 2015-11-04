@@ -36,4 +36,11 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
         $player = new Player();
         $this->assertInstanceOf(Coordinatable::class, $player);
     }
+
+    public function testDecide()
+    {
+//        $player = new Player();
+//        $decision = $player->decide();
+//        $this->assertEquals('move', $decision);
+    }
 }

@@ -27,9 +27,12 @@ class GameServiceTest extends \PHPUnit_Framework_TestCase
         $players = $gameService->getPlayers();
 
         $this->assertInstanceOf(Field::class, $field);
+        $this->assertNotNull($field->getCoordinate());
         $this->assertInstanceOf(Ball::class, $ball);
+        $this->assertNotNull($ball->getCoordinate());
         foreach ($players as $player) {
             $this->assertInstanceOf(Player::class, $player);
+            $this->assertNotNull($player->getCoordinate());
         }
     }
 }

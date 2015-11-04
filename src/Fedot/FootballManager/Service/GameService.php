@@ -7,6 +7,7 @@ namespace Fedot\FootballManager\Service;
 use Fedot\FootballManager\Model\Ball;
 use Fedot\FootballManager\Model\Field;
 use Fedot\FootballManager\Model\Player;
+use Fedot\FootballManager\ValueObject\Coordinates;
 
 class GameService
 {
@@ -28,8 +29,12 @@ class GameService
     public function prepare()
     {
         $this->field = new Field();
+        $this->field->setCoordinate(new Coordinates(0, 0));
         $this->ball = new Ball();
-        $this->players[] = new Player();
+        $this->ball->setCoordinate(new Coordinates(180, 180));
+        $player = new Player();
+        $player->setCoordinate(new Coordinates(180, 181));
+        $this->players[] = $player;
     }
 
     /**

@@ -4,7 +4,7 @@
 namespace Fedot\FootballManager\Model;
 
 
-class Ball
+class Ball extends AbstractCoordinatable
 {
 
 }

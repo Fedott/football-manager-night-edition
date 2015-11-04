@@ -21,7 +21,7 @@ class GameServiceTest extends \PHPUnit_Framework_TestCase
         $gameService = new GameService();
 
         $gameService->prepare();
-        
+
         $field = $gameService->getField();
         $ball = $gameService->getBall();
         $players = $gameService->getPlayers();

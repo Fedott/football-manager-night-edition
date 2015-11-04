@@ -4,7 +4,8 @@
 namespace Fedot\FootballManager\Model;
 
 
-class Field
+
+class Field extends AbstractCoordinatable
 {
     /**
      * @var int

@@ -4,7 +4,11 @@
 namespace Fedot\FootballManager\Model;
 
 
-class Player
+use Fedot\FootballManager\ValueObject\Coordinates;
+
+
+
+class Player extends AbstractCoordinatable
 {
     /**
      * @var string

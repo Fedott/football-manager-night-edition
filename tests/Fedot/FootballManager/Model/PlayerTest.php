@@ -4,6 +4,8 @@
 namespace Fedot\FootballManager\Model;
 
 
+use Fedot\FootballManager\Interfaces\Coordinatable;
+
 class PlayerTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateNew()
@@ -27,5 +29,11 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(75, $player->getSpeed());
         $this->assertEquals(90, $player->getShotAccurency());
         $this->assertEquals(98, $player->getShotPower());
+    }
+
+    public function testImplementCoordinatable()
+    {
+        $player = new Player();
+        $this->assertInstanceOf(Coordinatable::class, $player);
     }
 }

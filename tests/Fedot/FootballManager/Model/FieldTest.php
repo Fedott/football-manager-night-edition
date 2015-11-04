@@ -4,6 +4,8 @@
 namespace Fedot\FootballManager\Model;
 
 
+use Fedot\FootballManager\Interfaces\Coordinatable;
+
 class FieldTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateNew()
@@ -22,5 +24,11 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(6800, $field->getWidth());
         $this->assertEquals(10500, $field->getLength());
+    }
+
+    public function testImplementCoordinatable()
+    {
+        $field = new Field();
+        $this->assertInstanceOf(Coordinatable::class, $field);
     }
 }

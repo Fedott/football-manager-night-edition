@@ -168,6 +168,7 @@ class Player extends AbstractCoordinatable
             $action->setAngle(rand(0, 100));
             $action->setSpeed(rand(0, 100));
         }
+
         return $action;
     }
 }
